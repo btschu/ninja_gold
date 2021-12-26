@@ -53,12 +53,13 @@
                     </div>
                 </div>
             </div>
-            <h3 class="mt-4 text-center">Your Gold: {{ session['gold'] }} </h3> 
+            <h3 class="mt-4 text-center">Your Gold: {{ session['gold'] }} </h3>
+            <a class="btn btn-danger mx-auto" href="http://localhost:5000/reset">Reset Gold</a>
             <div class="container border border-dark bg-light mb-4 h-auto mt-4">
                 {% for message in session['message']: %}
                     {% if message[0] == 0: %}
                         <p class="card-text loss">{{message[1]}}</p>
-                    {% elif message[0]==1: %}
+                    {% elif message[0] == 1: %}
                         <p class="card-text gain">{{message[1]}}</p>
                     {% endif %}
                 {% endfor %}
