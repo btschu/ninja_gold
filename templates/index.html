@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container border border-dark mt-4 bg-warning">
+        <h1 class="text-center mt-4 bg-dark text-warning p-3">Ninja Gold</h1>
+            <div class="card-group mt-4">
+                <div class="card border-dark">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Farm</h4>
+                        <p class="card-text text-center">(earns 10-20 gold)</p>
+                        <form action="/process_money" method="post" class="form-group">
+                            <input type="hidden" name="building" value="farm" />
+                            <input class="d-flex mx-auto btn-warning rounded" type="submit" value="Find Gold!"/>
+                        </form>
+                    </div>
+                </div>
+                <div class="card border-dark">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Cave</h4>
+                        <p class="card-text text-center">(earns 5-10 gold)</p>
+                        <form action="/process_money" method="post" class="form-group">
+                            <input type="hidden" name="building" value="cave" />
+                            <input class="d-flex mx-auto btn-warning rounded" type="submit" value="Find Gold!"/>
+                        </form>
+                    </div>
+                </div>
+                <div class="card border-dark">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">House</h4>
+                        <p class="card-text text-center">(earns 2-5 gold)</p>
+                        <form action="/process_money" method="post" class="form-group">
+                            <input type="hidden" name="building" value="house" />
+                            <input class="d-flex mx-auto btn-warning rounded" type="submit" value="Find Gold!"/>
+                        </form>
+                    </div>
+                </div>
+                <div class="card border-dark">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Casino</h4>
+                        <p class="card-text text-center">(earns/takes 0-50 gold)</p>
+                        <form action="/process_money" method="post" class="form-group">
+                            <input type="hidden" name="building" value="casino" />
+                            <input class="d-flex mx-auto btn-warning rounded" type="submit" value="Find Gold!"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <h3 class="mt-4 text-center">Your Gold: {{ session['gold'] }} </h3> 
+            <div class="container border border-dark bg-light mb-4 h-auto mt-4">
+                {% for message in session['message']: %}
+                    {% if message[0] == 0: %}
+                        <p class="card-text loss">{{message[1]}}</p>
+                    {% elif message[0]==1: %}
+                        <p class="card-text gain">{{message[1]}}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+    </div>
+</body>
+</html>
